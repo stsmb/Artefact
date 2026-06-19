@@ -115,8 +115,33 @@
             font-size: 56px;
             font-weight: 800;
             color: #ffffff;
-            margin: 0 0 24px 0;
+            margin: 0 0 8px 0;
             letter-spacing: -0.03em;
+        }
+
+        /* Стиль счетчика онлайна */
+        .discord-counter {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            color: #5865F2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.02em;
+        }
+
+        .counter-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #23a55a;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+            box-shadow: 0 0 8px #23a55a;
         }
 
         .hero-text {
@@ -133,11 +158,11 @@
             justify-content: center;
         }
 
-        /* Обновленный увеличенный контейнер под видео */
+        /* Контейнер под видео */
         .visual-frame {
             width: 100%;
-            max-width: 480px; /* Сделали чуть шире */
-            height: 300px;    /* Сбалансировали под пропорции 16:9 */
+            max-width: 480px;
+            height: 300px;
             background: #1c1c1c;
             border: 1px solid #262626;
             border-radius: 12px;
@@ -146,7 +171,7 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        /* Невидимый щит, защищающий от кликов и паузы */
+        /* Защитный слой от кликов */
         .video-click-shield {
             position: absolute;
             top: 0;
@@ -306,6 +331,7 @@
 </head>
 <body>
 
+    <!-- Навигация -->
     <nav class="top-navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo-area">
@@ -316,24 +342,31 @@
                 <a href="#home" class="nav-link">Главная</a>
                 <a href="#about" class="nav-link">О нас</a>
                 <a href="#features" class="nav-link">Преимущества</a>
-                <a href="https://discord.gg/KAVZhvmC" target="_blank" class="btn-discord-nav">Join Discord</a>
+                <a href="https://discord.gg/yS5CTgjp3H" target="_blank" class="btn-discord-nav">Join Discord</a>
             </div>
         </div>
     </nav>
 
+    <!-- Главный экран -->
     <section id="home" class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">Artefact</h1>
+                
+                <!-- Живой счетчик -->
+                <div class="discord-counter">
+                    <span class="counter-dot"></span>
+                    <span id="online-text">Загрузка онлайна...</span>
+                </div>
+
                 <p class="hero-text">
                     Сообщество для тех, кто предпочитает осознанную командную игру и ценит адекватное окружение. Мы объединяем близких по духу игроков для совместных матчей, обмена опытом и качественного отдыха без токсичности и рутины.
                 </p>
-                <a href="https://discord.gg/KAVZhvmC" target="_blank" class="btn-large-discord">Присоединиться к сообществу</a>
+                <a href="https://discord.gg/yS5CTgjp3H" target="_blank" class="btn-large-discord">Присоединиться к сообществу</a>
             </div>
             <div class="hero-visual">
                 <div class="visual-frame">
                     <div class="video-click-shield"></div>
-                    
                     <iframe src="https://kinescope.io/embed/gM1tnCTvKv7hmkiu9q2tfR?autoplay=1&loop=1&muted=1&controls=0&playlist=gM1tnCTvKv7hmkiu9q2tfR" 
                             allow="autoplay; fullscreen; picture-in-picture; encrypted-media;" 
                             frameborder="0" 
@@ -345,6 +378,7 @@
         </div>
     </section>
 
+    <!-- О нас -->
     <section id="about" class="section-about">
         <div class="section-container">
             <div class="section-header">
@@ -356,6 +390,7 @@
         </div>
     </section>
 
+    <!-- Преимущества -->
     <section id="features" class="section-features">
         <div class="section-container">
             <div class="section-header">
@@ -382,17 +417,43 @@
         </div>
     </section>
 
+    <!-- Призыв к действию -->
     <section class="section-cta">
         <div class="section-container">
             <h2 class="cta-title">Начните играть в команде</h2>
             <p class="cta-text">Перестаньте зависеть от случайных подборов. Переходите по ссылке, выбирайте игровые роли и подключайтесь к голосовым каналам.</p>
-            <a href="https://discord.gg/KAVZhvmC" target="_blank" class="btn-large-discord">Join Discord Server</a>
+            <a href="https://discord.gg/yS5CTgjp3H" target="_blank" class="btn-large-discord">Join Discord Server</a>
         </div>
     </section>
 
+    <!-- Футер -->
     <footer>
         &copy; 2026 Artefact Community. Все права защищены.
     </footer>
+
+    <!-- АВТОМАТИЧЕСКИЙ СЧЕТЧИК СЕТИ С ИНВАЙТ-КОДОМ -->
+    <script>
+        function updateDiscordOnline() {
+            const inviteCode = "yS5CTgjp3H"; 
+
+            fetch(`https://discord.com/api/v9/invites/${inviteCode}?with_counts=true`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.approximate_presence_count !== undefined) {
+                        document.getElementById('online-text').innerText = `${data.approximate_presence_count} онлайн`;
+                    } else {
+                        document.getElementById('online-text').innerText = `Сообщество в Discord`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    document.getElementById('online-text').innerText = `Мы в Discord`;
+                });
+        }
+
+        updateDiscordOnline();
+        setInterval(updateDiscordOnline, 45000); // Обновление раз в 45 сек, чтобы Discord не ругался
+    </script>
 
 </body>
 </html>
