@@ -301,13 +301,32 @@
             transform: translateY(-1px);
         }
 
+        /* Стильный темный подвал */
         footer {
             background-color: #101010;
             padding: 40px 20px;
             text-align: center;
             font-size: 13px;
-            color: #525252;
+            color: #404040;
             border-top: 1px solid #1f1f1f;
+        }
+
+        /* Скрытая полупрозрачная кнопка политики */
+        .privacy-btn {
+            color: #333333; /* Почти сливается с фоном */
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 12px;
+            display: inline-block;
+            opacity: 0.3; /* Полупрозрачность 30% */
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        /* При наведении становится читаемой */
+        .privacy-btn:hover {
+            opacity: 0.8;
+            color: #a3a3a3;
+            text-decoration: underline;
         }
 
         /* Адаптивность для мобильных */
@@ -331,7 +350,6 @@
 </head>
 <body>
 
-    <!-- Навигация -->
     <nav class="top-navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo-area">
@@ -347,13 +365,11 @@
         </div>
     </nav>
 
-    <!-- Главный экран -->
     <section id="home" class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">Artefact</h1>
                 
-                <!-- Живой счетчик -->
                 <div class="discord-counter">
                     <span class="counter-dot"></span>
                     <span id="online-text">Загрузка онлайна...</span>
@@ -378,7 +394,6 @@
         </div>
     </section>
 
-    <!-- О нас -->
     <section id="about" class="section-about">
         <div class="section-container">
             <div class="section-header">
@@ -390,7 +405,6 @@
         </div>
     </section>
 
-    <!-- Преимущества -->
     <section id="features" class="section-features">
         <div class="section-container">
             <div class="section-header">
@@ -417,7 +431,6 @@
         </div>
     </section>
 
-    <!-- Призыв к действию -->
     <section class="section-cta">
         <div class="section-container">
             <h2 class="cta-title">Начните играть в команде</h2>
@@ -426,12 +439,11 @@
         </div>
     </section>
 
-    <!-- Футер -->
     <footer>
-        &copy; 2026 Artefact Community. Все права защищены.
+        &copy; 2026 Artefact Community. Все права защищены.<br>
+        <a href="privacy.html" class="privacy-btn">Политика конфиденциальности</a>
     </footer>
 
-    <!-- АВТОМАТИЧЕСКИЙ СЧЕТЧИК СЕТИ С ИНВАЙТ-КОДОМ -->
     <script>
         function updateDiscordOnline() {
             const inviteCode = "yS5CTgjp3H"; 
@@ -452,7 +464,7 @@
         }
 
         updateDiscordOnline();
-        setInterval(updateDiscordOnline, 45000); // Обновление раз в 45 сек, чтобы Discord не ругался
+        setInterval(updateDiscordOnline, 45000);
     </script>
 
 </body>
