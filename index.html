@@ -313,16 +313,15 @@
 
         /* Скрытая полупрозрачная кнопка политики */
         .privacy-btn {
-            color: #333333; /* Почти сливается с фоном */
+            color: #333333;
             text-decoration: none;
             font-size: 11px;
             margin-top: 12px;
             display: inline-block;
-            opacity: 0.3; /* Полупрозрачность 30% */
+            opacity: 0.3;
             transition: opacity 0.2s ease, color 0.2s ease;
         }
 
-        /* При наведении становится читаемой */
         .privacy-btn:hover {
             opacity: 0.8;
             color: #a3a3a3;
@@ -360,7 +359,7 @@
                 <a href="#home" class="nav-link">Главная</a>
                 <a href="#about" class="nav-link">О нас</a>
                 <a href="#features" class="nav-link">Преимущества</a>
-                <a href="https://discord.gg/yS5CTgjp3H" target="_blank" class="btn-discord-nav">Join Discord</a>
+                <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-discord-nav">Join Discord</a>
             </div>
         </div>
     </nav>
@@ -378,7 +377,7 @@
                 <p class="hero-text">
                     Сообщество для тех, кто предпочитает осознанную командную игру и ценит адекватное окружение. Мы объединяем близких по духу игроков для совместных матчей, обмена опытом и качественного отдыха без токсичности и рутины.
                 </p>
-                <a href="https://discord.gg/yS5CTgjp3H" target="_blank" class="btn-large-discord">Присоединиться к сообществу</a>
+                <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-large-discord">Присоединиться к сообществу</a>
             </div>
             <div class="hero-visual">
                 <div class="visual-frame">
@@ -435,7 +434,7 @@
         <div class="section-container">
             <h2 class="cta-title">Начните играть в команде</h2>
             <p class="cta-text">Перестаньте зависеть от случайных подборов. Переходите по ссылке, выбирайте игровые роли и подключайтесь к голосовым каналам.</p>
-            <a href="https://discord.gg/yS5CTgjp3H" target="_blank" class="btn-large-discord">Join Discord Server</a>
+            <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-large-discord">Join Discord Server</a>
         </div>
     </section>
 
@@ -446,7 +445,7 @@
 
     <script>
         function updateDiscordOnline() {
-            const inviteCode = "yS5CTgjp3H"; 
+            const inviteCode = "WVSz9wKpMW"; 
 
             fetch(`https://discord.com/api/v9/invites/${inviteCode}?with_counts=true`)
                 .then(response => response.json())
