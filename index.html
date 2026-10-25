@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artefact — Discord Community</title>
+    <title>Artefact — Игровое Discord Сообщество</title>
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #161616;
+            background-color: #0d0d0d;
             color: #e5e5e5;
             overflow-x: hidden;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
         /* Навигация */
         .top-navbar {
-            background-color: #101010;
-            border-bottom: 1px solid #262626;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: fixed;
             top: 0;
             left: 0;
@@ -31,9 +36,9 @@
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 20px;
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,23 +51,27 @@
         }
 
         .logo-img {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
-            margin-right: 14px;
+            margin-right: 12px;
+            filter: drop-shadow(0 0 8px rgba(184, 147, 67, 0.4));
         }
 
         .logo-text {
-            color: #b89343;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #ffffff 0%, #b89343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links-area {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 28px;
         }
 
         .nav-link {
@@ -74,64 +83,89 @@
         }
 
         .nav-link:hover {
-            color: #ffffff;
+            color: #b89343;
         }
 
         .btn-discord-nav {
-            background-color: #5865F2;
+            background: linear-gradient(135deg, #5865F2 0%, #404EED 100%);
             color: #ffffff;
             text-decoration: none;
-            border-radius: 6px;
-            padding: 8px 16px;
+            border-radius: 8px;
+            padding: 10px 20px;
             font-weight: 600;
             font-size: 13px;
-            transition: background-color 0.2s ease;
+            box-shadow: 0 4px 14px rgba(88, 101, 242, 0.35);
+            transition: all 0.2s ease;
         }
 
         .btn-discord-nav:hover {
-            background-color: #4752c4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
         }
 
-        /* Главный блок */
+        /* Hero Секция */
         .hero-section {
-            padding: 160px 0 100px 0;
-            background: radial-gradient(circle at top right, #22201c 0%, #161616 60%);
+            padding: 180px 0 120px 0;
+            background: radial-gradient(circle at 80% 20%, rgba(184, 147, 67, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 20% 80%, rgba(88, 101, 242, 0.08) 0%, transparent 40%),
+                        #0d0d0d;
+            position: relative;
         }
 
         .hero-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             gap: 60px;
         }
 
         .hero-content {
-            flex: 1.1;
+            flex: 1.2;
+        }
+
+        .badge-tag {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(184, 147, 67, 0.1);
+            border: 1px solid rgba(184, 147, 67, 0.25);
+            color: #b89343;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 20px;
         }
 
         .hero-title {
-            font-size: 56px;
-            font-weight: 800;
+            font-size: 62px;
+            font-weight: 900;
             color: #ffffff;
-            margin: 0 0 8px 0;
+            margin: 0 0 16px 0;
+            line-height: 1.1;
             letter-spacing: -0.03em;
         }
 
-        /* Стиль счетчика онлайна */
+        .hero-title span {
+            background: linear-gradient(135deg, #b89343 0%, #f3e5ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .discord-counter {
             display: inline-flex;
             align-items: center;
             background: rgba(88, 101, 242, 0.1);
-            border: 1px solid rgba(88, 101, 242, 0.2);
+            border: 1px solid rgba(88, 101, 242, 0.25);
             color: #5865F2;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             margin-bottom: 24px;
-            letter-spacing: 0.02em;
         }
 
         .counter-dot {
@@ -139,39 +173,73 @@
             height: 8px;
             background-color: #23a55a;
             border-radius: 50%;
-            margin-right: 8px;
-            display: inline-block;
-            box-shadow: 0 0 8px #23a55a;
+            margin-right: 10px;
+            box-shadow: 0 0 10px #23a55a;
         }
 
         .hero-text {
             font-size: 18px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #a3a3a3;
-            margin-bottom: 32px;
-            font-weight: 400;
+            margin-bottom: 36px;
+            max-width: 580px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #5865F2 0%, #404EED 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(88, 101, 242, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(88, 101, 242, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 16px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .hero-visual {
             flex: 0.9;
-            display: flex;
-            justify-content: center;
         }
 
-        /* Контейнер под видео */
         .visual-frame {
             width: 100%;
-            max-width: 480px;
-            height: 300px;
-            background: #1c1c1c;
-            border: 1px solid #262626;
-            border-radius: 12px;
+            height: 340px;
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
         }
 
-        /* Защитный слой от кликов */
         .video-click-shield {
             position: absolute;
             top: 0;
@@ -179,85 +247,222 @@
             width: 100%;
             height: 100%;
             z-index: 10;
-            background: transparent;
         }
 
-        /* Общие стили для контентных секций */
+        /* Общие секции */
         .section-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        .section-header {
-            margin-bottom: 40px;
+        .section-tag {
+            color: #b89343;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .section-title {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 36px;
+            font-weight: 800;
             color: #ffffff;
             margin: 0 0 16px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: #a3a3a3;
+            max-width: 600px;
+            margin: 0 0 48px 0;
+            line-height: 1.6;
+        }
+
+        /* Секция статистики */
+        .stats-section {
+            padding: 40px 0;
+            background: #121212;
+            border-y: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .stat-num {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #ffffff 0%, #b89343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #737373;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* Секция "О нас" */
         .section-about {
-            padding: 90px 0;
-            background-color: #101010;
-            border-top: 1px solid #1f1f1f;
+            padding: 100px 0;
+            background-color: #0d0d0d;
+        }
+
+        .about-box {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(15, 15, 15, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
         }
 
         .about-text {
-            font-size: 16px;
-            color: #a3a3a3;
+            font-size: 18px;
+            color: #d4d4d4;
+            line-height: 1.8;
             margin: 0;
-            line-height: 1.7;
-            max-width: 850px;
         }
 
         /* Секция "Преимущества" */
         .section-features {
-            padding: 90px 0;
-            background-color: #161616;
-            border-top: 1px solid #1f1f1f;
+            padding: 100px 0;
+            background-color: #111111;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 28px;
         }
 
         .feature-card {
-            background-color: #101010;
-            border: 1px solid #262626;
-            padding: 32px;
-            border-radius: 8px;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 36px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            border-color: #b89343;
-            transform: translateY(-2px);
+            border-color: rgba(184, 147, 67, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .feature-icon {
-            font-size: 22px;
-            margin-bottom: 16px;
-            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: rgba(184, 147, 67, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         .feature-name {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 700;
             color: #ffffff;
             margin: 0 0 12px 0;
         }
 
         .feature-desc {
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.6;
-            color: #a3a3a3;
+            color: #8e8e8e;
+            margin: 0;
+        }
+
+        /* Секция "Игры" */
+        .section-games {
+            padding: 100px 0;
+            background: #0d0d0d;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .game-card {
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .game-card:hover {
+            border-color: #5865F2;
+            background: #181818;
+        }
+
+        .game-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 6px 0;
+        }
+
+        .game-genre {
+            font-size: 13px;
+            color: #737373;
+        }
+
+        /* FAQ Секция */
+        .section-faq {
+            padding: 100px 0;
+            background: #111111;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: #161616;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 10px 0;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: #8e8e8e;
+            line-height: 1.6;
             margin: 0;
         }
 
@@ -265,90 +470,88 @@
         .section-cta {
             padding: 120px 0;
             text-align: center;
-            background-color: #101010;
-            border-top: 1px solid #1f1f1f;
+            background: radial-gradient(circle at center, rgba(88, 101, 242, 0.12) 0%, transparent 70%), #0d0d0d;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .cta-title {
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 42px;
+            font-weight: 900;
             color: #ffffff;
             margin: 0 0 16px 0;
         }
 
         .cta-text {
-            font-size: 16px;
+            font-size: 18px;
             color: #a3a3a3;
-            max-width: 540px;
+            max-width: 580px;
             margin: 0 auto 40px auto;
             line-height: 1.6;
         }
 
-        .btn-large-discord {
-            background-color: #5865F2;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 8px;
-            padding: 16px 36px;
-            font-size: 16px;
-            font-weight: 600;
-            display: inline-block;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-        }
-
-        .btn-large-discord:hover {
-            background-color: #4752c4;
-            transform: translateY(-1px);
-        }
-
-        /* Стильный темный подвал */
+        /* Подвал */
         footer {
-            background-color: #101010;
-            padding: 40px 20px;
+            background-color: #080808;
+            padding: 40px 24px;
             text-align: center;
             font-size: 13px;
-            color: #404040;
-            border-top: 1px solid #1f1f1f;
+            color: #525252;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Скрытая полупрозрачная кнопка политики */
         .privacy-btn {
-            color: #333333;
+            color: #737373;
             text-decoration: none;
-            font-size: 11px;
+            font-size: 12px;
             margin-top: 12px;
             display: inline-block;
-            opacity: 0.3;
-            transition: opacity 0.2s ease, color 0.2s ease;
+            transition: color 0.2s ease;
         }
 
         .privacy-btn:hover {
-            opacity: 0.8;
-            color: #a3a3a3;
+            color: #b89343;
             text-decoration: underline;
         }
 
-        /* Адаптивность для мобильных */
-        @media (max-width: 768px) {
+        /* Мобильная адаптивность */
+        @media (max-width: 992px) {
             .hero-container {
                 flex-direction: column;
                 text-align: center;
-                gap: 40px;
+            }
+            .hero-btns {
+                justify-content: center;
             }
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-title {
-                font-size: 40px;
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 600px) {
             .nav-links-area .nav-link {
                 display: none;
+            }
+            .games-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-btns {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Навигация -->
     <nav class="top-navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo-area">
@@ -356,18 +559,21 @@
                 <span class="logo-text">ARTEFACT</span>
             </a>
             <div class="nav-links-area">
-                <a href="#home" class="nav-link">Главная</a>
                 <a href="#about" class="nav-link">О нас</a>
                 <a href="#features" class="nav-link">Преимущества</a>
-                <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-discord-nav">Join Discord</a>
+                <a href="#games" class="nav-link">Дисциплины</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-discord-nav">Войти в Discord</a>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Секция -->
     <section id="home" class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Artefact</h1>
+                <span class="badge-tag">Gaming Community</span>
+                <h1 class="hero-title">Твоя идеальная <span>команда</span> ждёт</h1>
                 
                 <div class="discord-counter">
                     <span class="counter-dot"></span>
@@ -375,9 +581,13 @@
                 </div>
 
                 <p class="hero-text">
-                    Сообщество для тех, кто предпочитает осознанную командную игру и ценит адекватное окружение. Мы объединяем близких по духу игроков для совместных матчей, обмена опытом и качественного отдыха без токсичности и рутины.
+                    Artefact — уютное игровое комьюнити для тех, кто ценит взаимовыручку, адекватную тактическую игру и комфортное общение без токсичности.
                 </p>
-                <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-large-discord">Присоединиться к сообществу</a>
+
+                <div class="hero-btns">
+                    <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-primary">Присоединиться</a>
+                    <a href="#about" class="btn-secondary">Узнать больше</a>
+                </div>
             </div>
             <div class="hero-visual">
                 <div class="visual-frame">
@@ -393,56 +603,133 @@
         </div>
     </section>
 
-    <section id="about" class="section-about">
+    <!-- Секция статистики -->
+    <section class="stats-section">
         <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">О нашем сообществе</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Голосовой онлайн</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">0%</div>
+                    <div class="stat-label">Токсичности</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">10+</div>
+                    <div class="stat-label">Игровых дисциплин</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">🎁</div>
+                    <div class="stat-label">Регулярные эвенты</div>
+                </div>
             </div>
-            <p class="about-text">
-                Мы — развивающееся комьюнити с небольшим, но уверенным опытом. Artefact создан для того, чтобы каждый игрок мог легко найти себе тиммейтов на любой вкус: от хардкорных тактиков до тех, кто просто заходит разгрузиться вечером. Кроме совместных каток, мы регулярно проводим внутренние конкурсы и ивенты с хорошими призами для участников.
-            </p>
         </div>
     </section>
 
+    <!-- О нас -->
+    <section id="about" class="section-about">
+        <div class="section-container">
+            <span class="section-tag">Кто мы такие</span>
+            <h2 class="section-title">Сообщество нового формата</h2>
+            <div class="about-box">
+                <p class="about-text">
+                    Мы создали Artefact с одной простой целью: избавить игроков от «рандома» и неадекватных соотрядников. Наш сервер — это баланс между высоким уровнем игры и ламповым отдыхом после работы. Здесь вы найдете единомышленников для поднятия ранга или просто для спокойной игры в хорошие проекты.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
     <section id="features" class="section-features">
         <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Наши преимущества</h2>
-            </div>
+            <span class="section-tag">Почему выбирают нас</span>
+            <h2 class="section-title">Наши преимущества</h2>
+            <p class="section-desc">Мы создаем максимально комфортные условия для повседневного гейминга.</p>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3 class="feature-name">Тиммейты на любой вкус</h3>
-                    <p class="feature-desc">Удобный поиск напарников под ваш уровень навыков, игровой стиль, прайм-тайм и предпочтения в общении.</p>
+                    <h3 class="feature-name">Удобный подбор</h3>
+                    <p class="feature-desc">Система ролей и комнат позволяет в пару кликов собрать группу под ваш стиль игры и прайм-тайм.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3 class="feature-name">Зрелая атмосфера</h3>
-                    <p class="feature-desc">У нас одинаково комфортно как опытным координаторам, так и тем, кто заходит расслабиться после работы.</p>
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-name">Модерация 24/7</h3>
+                    <p class="feature-desc">Строгий регламент общения защищает участников от токсичности, оскорблений и лишнего шума.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3 class="feature-name">Регулярные конкурсы</h3>
-                    <p class="feature-desc">Постоянные розыгрыши, внутренние турниры и активности на сервере с ценными и хорошими призами.</p>
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-name">Розыгрыши и турниры</h3>
+                    <p class="feature-desc">Регулярные внутренние соревнования, игрости и призы для активных участников сервера.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-cta">
+    <!-- Игры -->
+    <section id="games" class="section-games">
         <div class="section-container">
-            <h2 class="cta-title">Начните играть в команде</h2>
-            <p class="cta-text">Перестаньте зависеть от случайных подборов. Переходите по ссылке, выбирайте игровые роли и подключайтесь к голосовым каналам.</p>
-            <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-large-discord">Join Discord Server</a>
+            <span class="section-tag">Во что играем</span>
+            <h2 class="section-title">Популярные дисциплины</h2>
+            <p class="section-desc">Наши участники активничают в самых разных жанрах — от шутеров до MMO.</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-title">Counter-Strike 2</div>
+                    <div class="game-genre">Tactical Shooter</div>
+                </div>
+                <div class="game-card">
+                    <div class="game-title">Valorant</div>
+                    <div class="game-genre">Hero Shooter</div>
+                </div>
+                <div class="game-card">
+                    <div class="game-title">Dota 2 / LoL</div>
+                    <div class="game-genre">MOBA</div>
+                </div>
+                <div class="game-card">
+                    <div class="game-title">CoD: Warzone</div>
+                    <div class="game-genre">Battle Royale</div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq" class="section-faq">
+        <div class="section-container">
+            <span class="section-tag">Вопросы и ответы</span>
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Как стать частью сообщества?</div>
+                    <div class="faq-answer">Просто перейдите по ссылке в Discord, выберите интересующие вас роли игр в канале приветствия и подключайтесь к свободным голосовым комнатам.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Есть ли у вас ограничения по возрасту или скиллу?</div>
+                    <div class="faq-answer">Главное требование — адекватность и уважение к тиммейтам. У нас есть комнаты как для новичков, так и для опытных хардкорных игроков.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-cta">
+        <div class="section-container">
+            <h2 class="cta-title">Готовы к хорошим матчам?</h2>
+            <p class="cta-text">Подключайтесь к серверу Artefact уже сейчас и находите напарников за считанные секунды.</p>
+            <a href="https://discord.gg/WVSz9wKpMW" target="_blank" class="btn-primary">Присоединиться к Discord</a>
+        </div>
+    </section>
+
+    <!-- Подвал -->
     <footer>
         &copy; 2026 Artefact Community. Все права защищены.<br>
         <a href="privacy.html" class="privacy-btn">Политика конфиденциальности</a>
     </footer>
 
+    <!-- Скрипт онлайна -->
     <script>
         function updateDiscordOnline() {
             const inviteCode = "WVSz9wKpMW"; 
@@ -451,13 +738,13 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.approximate_presence_count !== undefined) {
-                        document.getElementById('online-text').innerText = `${data.approximate_presence_count} онлайн`;
+                        document.getElementById('online-text').innerText = `${data.approximate_presence_count} участников онлайн`;
                     } else {
                         document.getElementById('online-text').innerText = `Сообщество в Discord`;
                     }
                 })
                 .catch(error => {
-                    console.error('Ошибка:', error);
+                    console.error('Ошибка при получении онлайна:', error);
                     document.getElementById('online-text').innerText = `Мы в Discord`;
                 });
         }
